@@ -12,7 +12,7 @@ using UniSystem2API.DAL;
 namespace UniSystem2API.Migrations
 {
     [DbContext(typeof(UniDbContext))]
-    [Migration("20231009061650_initial")]
+    [Migration("20231009065537_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -104,7 +104,7 @@ namespace UniSystem2API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ExamId"));
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("integer");
 
                     b.Property<int>("ExamType")
@@ -119,6 +119,20 @@ namespace UniSystem2API.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Exams");
+
+                    b.HasData(
+                        new
+                        {
+                            ExamId = 1,
+                            ExamType = 1,
+                            Location = "SouthCampus"
+                        },
+                        new
+                        {
+                            ExamId = 2,
+                            ExamType = 2,
+                            Location = "NorthCampus"
+                        });
                 });
 
             modelBuilder.Entity("UniSystem2API.Entities.ExamResult", b =>
@@ -248,9 +262,7 @@ namespace UniSystem2API.Migrations
                 {
                     b.HasOne("UniSystem2API.Entities.Course", "Course")
                         .WithMany("Exams")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId");
 
                     b.Navigation("Course");
                 });

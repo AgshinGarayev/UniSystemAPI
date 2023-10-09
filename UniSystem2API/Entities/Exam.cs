@@ -13,8 +13,8 @@ namespace UniSystem2API.Entities
         public string Location { get; set; }
 
         
-        public int CourseId { get; set; } 
-        public Course Course { get; set; } 
+        public int? CourseId { get; set; } 
+        public Course? Course { get; set; } 
 
         
         public ICollection<ExamResult>? ExamResults { get; set; } 

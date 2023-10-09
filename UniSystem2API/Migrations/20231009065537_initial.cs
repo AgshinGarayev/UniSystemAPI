@@ -3,6 +3,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace UniSystem2API.Migrations
 {
     /// <inheritdoc />
@@ -111,7 +113,7 @@ namespace UniSystem2API.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ExamType = table.Column<int>(type: "integer", nullable: false),
                     Location = table.Column<string>(type: "text", nullable: false),
-                    CourseId = table.Column<int>(type: "integer", nullable: false)
+                    CourseId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,8 +122,7 @@ namespace UniSystem2API.Migrations
                         name: "FK_Exams_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CourseId");
                 });
 
             migrationBuilder.CreateTable(
@@ -175,6 +176,15 @@ namespace UniSystem2API.Migrations
                         principalTable: "Students",
                         principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Exams",
+                columns: new[] { "ExamId", "CourseId", "ExamType", "Location" },
+                values: new object[,]
+                {
+                    { 1, null, 1, "SouthCampus" },
+                    { 2, null, 2, "NorthCampus" }
                 });
 
             migrationBuilder.CreateIndex(

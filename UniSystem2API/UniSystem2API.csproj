@@ -11,6 +11,7 @@
     <Folder Include="Entities\" />
     <Folder Include="BLL\" />
     <Folder Include="DTOS\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

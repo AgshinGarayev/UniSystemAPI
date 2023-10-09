@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniSystem2API.Core.Enums;
 using UniSystem2API.Entities;
 //using UniSystem.DataAccess.Core.Enums;
 
@@ -21,22 +22,22 @@ namespace UniSystem2API.DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Exam>().HasData(
-            //    new Exam()
-            //    {
-            //        ExamId = 1,
-            //        ExamType= 1,//Midterms
-            //        Location=EExam.SouthCampus.ToString(),
-            //    },
+            modelBuilder.Entity<Exam>().HasData(
+                new Exam()
+                {
+                    ExamId = 1,
+                    ExamType = 1,//Midterms
+                    Location = EExam.SouthCampus.ToString(),
+                },
 
-            //    new Exam()
-            //    {
-            //        ExamId = 2,
-            //        ExamType = 2,//Finals
-            //        Location=EExam.NorthCampus.ToString(),
-            //    }
+                new Exam()
+                {
+                    ExamId = 2,
+                    ExamType = 2,//Finals
+                    Location = EExam.NorthCampus.ToString(),
+                }
 
-            //    );
+                );
         }
 
 
